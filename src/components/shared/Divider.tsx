@@ -4,7 +4,7 @@ interface DividerProps {
   className?: string;
 }
 
-export function Divide({ orientation = 'horizontal', spacing = 16, className }: DividerProps) {
+export function Divider({ orientation = 'horizontal', spacing = 16, className }: DividerProps) {
   const style =
     orientation === 'horizontal'
       ? { marginTop: spacing, marginBottom: spacing }
