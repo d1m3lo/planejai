@@ -6,6 +6,7 @@ import { useSimulationStorage } from './useSimulationStorage';
 
 export const useInsight = (id: string) => {
   const isRequestPending = useRef(false);
+  const { getFormData, updateSimulation } = useSimulationStorage();
   const [insight, setInsight] = useState<InsightData | null>(() => {
     const simulation = getFormData(id);
     if (simulation?.insight) {
@@ -15,8 +16,6 @@ export const useInsight = (id: string) => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  const { getFormData, updateSimulation } = useSimulationStorage();
 
   const fetchInsight = useCallback(
     async (simulationId: string) => {

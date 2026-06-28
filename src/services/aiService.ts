@@ -6,11 +6,19 @@ interface GeminiResponse {
   }[];
 }
 
-const API_KEY = String(import.meta.env.VITE_GEMINI_API_KEY);
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY?.trim();
 const MODEL_NAME = 'gemini-flash-latest';
-const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
+const GEMINI_API_URL = import.meta.env.DEV
+  ? '/api/gemini'
+  : `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
 
 const callGeminiAPI = async (prompt: string) => {
+  if (!import.meta.env.DEV && !API_KEY) {
+    throw new Error(
+      'Chave da API Gemini não configurada. Defina VITE_GEMINI_API_KEY no arquivo .env.local.',
+    );
+  }
+
   const response = await fetch(GEMINI_API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
