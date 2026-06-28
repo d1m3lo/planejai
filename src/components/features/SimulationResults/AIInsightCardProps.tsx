@@ -4,6 +4,7 @@ import { useInsight } from '@/hooks/useInsight';
 import Skeleton from 'react-loading-skeleton';
 import { Content } from '../Insights/Content';
 import { Error } from '../Insights/Error';
+import { InsightChat } from './InsightChat';
 
 interface AIInsightCardProps {
   simulationId: string;
@@ -41,7 +42,12 @@ export function AIInsightsCard({ simulationId }: AIInsightCardProps) {
           onRetry={() => fetchInsight(simulationId)}
         />
       )}
-      {!isLoading && insight && <Content insight={insight} />}
+      {!isLoading && insight && (
+        <>
+          <Content insight={insight} />
+          <InsightChat simulationId={simulationId} />
+        </>
+      )}
     </div>
   );
 }

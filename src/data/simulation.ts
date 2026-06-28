@@ -77,8 +77,13 @@ export const simulationFormSteps = [
   },
 ] satisfies FormStepProps[];
 
-export type SimulationFormData = Record<(typeof simulationFormSteps)[number]['id'], string>;
+export type SimulationFormData = Record<
+  'income' | 'expenses' | 'debts' | 'goalName' | 'goalAmount' | 'goalDeadline',
+  string
+>;
 export type SimulationRecord = SimulationFormData & {
   id: string;
   insight?: InsightData;
+  createdAt: string;
+  messages?: { role: 'user' | 'model'; text: string }[];
 };
