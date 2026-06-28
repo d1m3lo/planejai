@@ -47,3 +47,24 @@
   --color-skeleton-base: var(--skeleton-base-color);
   --color-skeleton-highlight: var(--skeleton-highlight-color);
 }
+
+@layer base {
+  :root,
+  [data-theme='light'] {
+    /* ... */
+    --skeleton-base-color: #e1e1f1;
+    --skeleton-highlight-color: #c5c5df;
+  }
+
+  [data-theme='dark'] {
+    /* ... */
+    --skeleton-base-color: #3e3e42;
+    --skeleton-highlight-color: #434052;
+  }
+}
+
+@theme {
+  /* ... */
+  --color-skeleton-base: var(--skeleton-base-color);
+  --color-skeleton-highlight: var(--skeleton-highlight-color);
+}
